@@ -1,13 +1,22 @@
+/*
+	Author: MaximusZhou
+	Example:
+	$gcc -Wall daytimetcpcli_1_1.c  ../lib/error.c -o  daytimetcpcli_1_1
+	$./daytimetcpcli_1_1  127.0.0.1
+	Wed Jul  1 15:52:07 2015
+	Analyse:
+*/
+
 #include "../lib/unp.h"
 #include	<time.h>
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int					listenfd, connfd;
 	struct sockaddr_in	servaddr;
 	char				buff[MAXLINE];
 	time_t				ticks;
+	char *temp;
 
 	listenfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (listenfd < 0)
@@ -22,12 +31,15 @@ main(int argc, char **argv)
 
 	listen(listenfd, LISTENQ);
 
-	for ( ; ; ) {
+	for ( ; ; )
+	{
 		connfd = accept(listenfd, (SA *) NULL, NULL);
 
         ticks = time(NULL);
         snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-        write(connfd, buff, strlen(buff));
+		// write(connfd, buff, strlen(buff));
+		for(temp = buff; *temp != '\0'; temp++)
+        	write(connfd, temp, 1);
 
 		close(connfd);
 	}
