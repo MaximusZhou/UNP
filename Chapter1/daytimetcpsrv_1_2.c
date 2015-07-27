@@ -1,8 +1,8 @@
 /*
 	Author: MaximusZhou
 	Example:
-	$gcc -Wall daytimetcpcli_1_1.c  ../lib/error.c -o  daytimetcpcli_1_1
-	$./daytimetcpcli_1_1  127.0.0.1
+	$gcc -Wall daytimetcpsrv_1_2.c  ../lib/error.c -o  daytimetcpsrv_1_2
+	$./daytimetcpsrv_1_2
 	Wed Jul  1 15:52:07 2015
 	Analyse:
 */
